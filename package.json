@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "b": "pnpm --filter @ideanick3/backend",
-    "w": "pnpm --filter @ideanick3/webapp",
+    "b": "pnpm --filter @ideanick/backend",
+    "w": "pnpm --filter @ideanick/webapp",
     "dev": "pnpm -r --parallel dev",
     "types": "concurrently \"pnpm b types\" \"pnpm w types\"",
     "lint": "concurrently \"pnpm b lint\" \"pnpm w lint\"",
@@ -12,11 +12,15 @@
     "prepare": "husky"
   },
   "devDependencies": {
+    "@eslint/js": "^9.17.0",
     "concurrently": "^9.1.0",
-    "prettier": "^3.4.1",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "eslint": "^9.17.0",
     "rimraf": "^6.0.1",
     "typescript": "~5.6.3",
     "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0"
+    "ts-node-dev": "^2.0.0",
+    "typescript-eslint": "^8.19.1"
   }
 }
