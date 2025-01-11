@@ -1,5 +1,22 @@
 {
   "name": "ideanick",
   "private": true,
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "scripts": {
+    "b": "pnpm --filter @ideanick3/backend",
+    "w": "pnpm --filter @ideanick3/webapp",
+    "dev": "pnpm -r --parallel dev",
+    "types": "concurrently \"pnpm b types\" \"pnpm w types\"",
+    "lint": "concurrently \"pnpm b lint\" \"pnpm w lint\"",
+    "prettify": "pnpm -r --parallel prettify",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "prettier": "^3.4.1",
+    "rimraf": "^6.0.1",
+    "typescript": "~5.6.3",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0"
+  }
 }

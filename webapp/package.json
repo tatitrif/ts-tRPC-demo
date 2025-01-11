@@ -7,12 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "prettify": "prettier --log-level warn --cache --write {src/**/*,*}.{ts,tsx,js,json,yml,scss}"
+    "types": "tsc --noEmit --project ./tsconfig.json && tsc --noEmit --project ./tsconfig.node.json",
+    "prettify": "prettier --log-level warn --cache --write {src/**/*,*}.{ts,tsx,js,json,yml,scss}",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@ideanick/backend": "workspace:*",
-    "@tanstack/react-query": "^4.35.3",
+    "@tanstack/react-query": "^4.36.1",
     "@trpc/client": "^10.45.2",
     "@trpc/react-query": "^10.45.2",
     "react": "^18.3.1",
@@ -28,8 +29,6 @@
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
     "prettier": "^3.4.2",
-    "typescript": "~5.6.2",
-    "typescript-eslint": "^8.18.2",
     "vite": "^6.0.5"
   }
 }
