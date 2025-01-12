@@ -14,7 +14,7 @@ export const App = () => {
     <TrpcProvider>
       <BrowserRouter>
         <Routes>
-        <Route element={<Layout />}>
+          <Route element={<Layout />}>
             <Route path={routes.getAllIdeasRoute()} element={<AllIdeasPage />} />
             <Route path={routes.getNewIdeaRoute()} element={<NewIdeaPage />} />
             <Route path={routes.getViewIdeaRoute(routes.viewIdeaRouteParams)} element={<ViewIdeaPage />} />
