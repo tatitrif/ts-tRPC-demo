@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint --fix",
+    "lint": "eslint",
     "stylelint": "stylelint --cache --cache-location ./node_modules/.cache/.stylelintcache {src/**/*,*}.{scss,}",
     "stylecheck": "sass --update -q ./src:./node_modules/.cache/.stylecheckcache",
     "types": "tsc --noEmit --project ./tsconfig.json && tsc --noEmit --project ./tsconfig.node.json",
