@@ -1,12 +1,3 @@
 {
   "eslint.workingDirectories": ["backend", "webapp"],
-
-  // This matches the value configured on the autoformatter
-  "editor.rulers": [120],
-
-  // An array of language ids which should be validated by ESLint
-  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-
-  // When enabled, will trim trailing whitespace when saving a file.
-  "files.trimTrailingWhitespace": true
 }
