@@ -1,3 +1,5 @@
 pnpm lint
+pnpm w stylecheck
+pnpm w stylelint
 pnpm prettify
 pnpm types
