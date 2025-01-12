@@ -8,8 +8,12 @@
     "dev": "pnpm -r --parallel dev",
     "types": "concurrently \"pnpm b types\" \"pnpm w types\"",
     "lint": "concurrently \"pnpm b lint\" \"pnpm w lint\"",
-    "prettify": "pnpm -r --parallel prettify",
-    "prepare": "husky"
+    "prettify": "pnpm -r --parallel prettify"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "husky"
+    }
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
@@ -17,9 +21,8 @@
     "globals": "^15.14.0",
     "prettier": "^3.4.2",
     "eslint": "^9.17.0",
-    "typescript": "~5.6.3",
+    "typescript": "~5.7.3",
     "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "typescript-eslint": "^8.19.1"
   }
