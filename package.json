@@ -8,12 +8,8 @@
     "dev": "pnpm -r --parallel dev",
     "types": "concurrently \"pnpm b types\" \"pnpm w types\"",
     "lint": "concurrently \"pnpm b lint\" \"pnpm w lint\"",
-    "prettify": "pnpm -r --parallel prettify"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "husky"
-    }
+    "prettify": "pnpm -r --parallel prettify",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
