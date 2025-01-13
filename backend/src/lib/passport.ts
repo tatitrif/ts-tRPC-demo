@@ -1,6 +1,7 @@
 import { type Express } from 'express'
 import { Passport } from 'passport'
 import { ExtractJwt, Strategy as JWTStrategy } from 'passport-jwt'
+import { env } from 'process'
 
 import { type AppContext } from './ctx'
 
@@ -10,7 +11,7 @@ export const applyPassportToExpressApp = (expressApp: Express, ctx: AppContext):
   passport.use(
     new JWTStrategy(
       {
-        secretOrKey: 'not-really-secret-jwt-key',
+        secretOrKey: env.JWT_SECRET!,
         jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
       },
       (jwtPayload: string, done) => {
@@ -37,6 +38,10 @@ export const applyPassportToExpressApp = (expressApp: Express, ctx: AppContext):
       next()
       return
     }
-    passport.authenticate('jwt', { session: false })(req, res, next)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    passport.authenticate('jwt', { session: false }, (...args: any[]) => {
+      req.user = args[1] || undefined
+      next()
+    })(req, res, next)
   })
 }
