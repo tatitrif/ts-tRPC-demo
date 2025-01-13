@@ -4,6 +4,8 @@ import { httpBatchLink } from '@trpc/client'
 import { createTRPCReact } from '@trpc/react-query'
 import Cookies from 'js-cookie'
 
+import { env } from './env'
+
 // eslint-disable-next-line react-refresh/only-export-components
 export const trpc = createTRPCReact<TrpcRouter>()
 
@@ -19,7 +21,7 @@ const queryClient = new QueryClient({
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: 'http://localhost:3000/trpc',
+      url: env.VITE_BACKEND_TRPC_URL,
       headers: () => {
         const token = Cookies.get('token')
         return {
