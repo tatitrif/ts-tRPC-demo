@@ -1,6 +1,7 @@
 import { type Idea } from '@prisma/client'
 
 import { type AppContext } from '../lib/ctx'
+import { sendMostLikedIdeasEmail } from '../lib/emails'
 
 export const notifyAboutMostLikedIdeas = async (ctx: AppContext) => {
   const mostLikedIdeas = await ctx.prisma.$queryRaw<
@@ -25,5 +26,15 @@ export const notifyAboutMostLikedIdeas = async (ctx: AppContext) => {
     from "topIdeas"
     where "thisMonthLikesCount" > 0
   `
-  console.info(mostLikedIdeas)
+  if (!mostLikedIdeas.length) {
+    return
+  }
+  const users = await ctx.prisma.user.findMany({
+    select: {
+      email: true,
+    },
+  })
+  for (const user of users) {
+    await sendMostLikedIdeasEmail({ user, ideas: mostLikedIdeas })
+  }
 }
