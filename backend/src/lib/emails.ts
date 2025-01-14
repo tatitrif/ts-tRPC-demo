@@ -4,6 +4,7 @@ import Handlebars from 'handlebars'
 import { join } from 'path'
 
 import { env } from './env'
+import { sendMsg } from './mailer'
 
 const filePath = '../emails/dist/'
 
@@ -39,12 +40,13 @@ const sendEmail = async ({
     const hbrTemplate = Handlebars.compile(htmlTemplate)
     const html = hbrTemplate(templateVariables)
 
+    await sendMsg(to, subject, html)
+
     console.info('sendEmail', {
       to,
       subject,
       templateName,
       fullTemplateVaraibles,
-      html,
     })
     return { ok: true }
   } catch (error) {
