@@ -12,6 +12,7 @@ import { trpc } from '../../../lib/trpc'
 
 export const NewIdeaPage = withPageWrapper({
   authorizedOnly: true,
+  title: 'New Idea',
 })(() => {
   const createIdea = trpc.createIdea.useMutation()
   const { formik, buttonProps, alertProps } = useForm({
