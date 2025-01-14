@@ -1,15 +1,16 @@
 import { type Idea, type User } from '@prisma/client'
-import { readFileSync } from 'fs'
+import { promises as fs } from 'fs'
+import Handlebars from 'handlebars'
 import { join } from 'path'
 
 import { env } from './env'
 
 const filePath = '../emails/dist/'
 
-function getHTMLTemplateString(fileName: string) {
+async function getHTMLTemplateString(fileName: string) {
   const defaultResult = '<!DOCTYPE html><html></html>'
   try {
-    return readFileSync(join(__dirname, filePath, fileName + '.html'), 'utf-8')
+    return await fs.readFile(join(__dirname, filePath, fileName + '.html'), 'utf-8')
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
     return defaultResult
@@ -34,12 +35,16 @@ const sendEmail = async ({
       ...templateVariables,
       homeUrl: env.WEBAPP_URL,
     }
+
+    const hbrTemplate = Handlebars.compile(htmlTemplate)
+    const html = hbrTemplate(templateVariables)
+
     console.info('sendEmail', {
       to,
       subject,
       templateName,
       fullTemplateVaraibles,
-      htmlTemplate,
+      html,
     })
     return { ok: true }
   } catch (error) {
