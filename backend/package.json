@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "nodemon --watch ./src/emails/dist,./.env ./src/index.ts",
     "build-emails": "rimraf ./src/emails/dist && mkdir ./src/emails/dist && mjml ./src/emails/[!_]*.mjml -o ./src/emails/dist",
+    "build-emails-win": "mjml ./src/emails/[!_]*.mjml -o ./src/emails/dist",
     "watch-emails": "mjml -w ./src/emails/[!_]*.mjml -o ./src/emails/dist",
     "build": "rimraf ./dist && tsc --build ./tsconfig.json",
     "start": "node ./dist/index.js",
