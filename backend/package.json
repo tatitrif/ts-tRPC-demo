@@ -3,7 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "nodemon --watch ./.env ./src/index.ts",
+    "dev": "nodemon --watch ./src/emails/dist,./.env ./src/index.ts",
+    "build-emails": "rimraf ./src/emails/dist && mkdir ./src/emails/dist && mjml ./src/emails/[!_]*.mjml -o ./src/emails/dist",
+    "watch-emails": "mjml -w ./src/emails/[!_]*.mjml -o ./src/emails/dist",
     "build": "rimraf ./dist && tsc --build ./tsconfig.json",
     "start": "node ./dist/index.js",
     "pgenerate": "prisma generate",
@@ -28,6 +30,7 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
+    "mjml": "^4.15.3",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "trpc-playground": "^1.0.4",
