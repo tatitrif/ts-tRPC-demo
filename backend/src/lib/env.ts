@@ -2,18 +2,24 @@ import * as dotenv from 'dotenv'
 import { z } from 'zod'
 
 dotenv.config()
-
+const zNonemptyTrimmed = z.string().trim().min(1)
+const zNonemptyTrimmedRequiredOnNotLocal = zNonemptyTrimmed.optional().refine(
+  // eslint-disable-next-line node/no-process-env
+  (val) => process.env.HOST_ENV === 'local' || !!val,
+  'Required on local host'
+)
 const zEnv = z.object({
-  PORT: z.string().trim().min(1),
-  DATABASE_URL: z.string().trim().min(1),
-  JWT_SECRET: z.string().trim().min(1),
-  PASSWORD_SALT: z.string().trim().min(1),
-  INITIAL_ADMIN_PASSWORD: z.string().trim().min(1),
-  WEBAPP_URL: z.string().trim().min(1),
-  MAILER_HOST: z.string().trim().min(1),
-  MAILER_USER: z.string().trim().min(1),
-  MAILER_PASS: z.string().trim().min(1),
-  FROM_EMAIL_ADDRESS: z.string().trim().min(1),
+  PORT: zNonemptyTrimmed,
+  HOST_ENV: z.enum(['local', 'production']),
+  DATABASE_URL: zNonemptyTrimmed,
+  JWT_SECRET: zNonemptyTrimmed,
+  PASSWORD_SALT: zNonemptyTrimmed,
+  INITIAL_ADMIN_PASSWORD: zNonemptyTrimmed,
+  WEBAPP_URL: zNonemptyTrimmed,
+  MAILER_HOST: zNonemptyTrimmedRequiredOnNotLocal,
+  MAILER_USER: zNonemptyTrimmed,
+  MAILER_PASS: zNonemptyTrimmed,
+  FROM_EMAIL_ADDRESS: zNonemptyTrimmed,
 })
 
 // eslint-disable-next-line node/no-process-env
