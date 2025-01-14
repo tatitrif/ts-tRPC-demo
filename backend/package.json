@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "nodemon --watch ./src/emails/dist,./.env ./src/index.ts",
     "build-emails": "mjml ./src/emails/[!_]*.mjml -o ./src/emails/dist",
-    "copy-emails": "copyfiles -u 1 ./src/emails/dist/*.html ./dist",
+    "copy-emails": "copyfiles ./src/emails/dist/*.html ./dist/backend",
     "build-ts": "rimraf ./dist && tsc --build ./tsconfig.json",
     "build": "pnpm build-ts && pnpm build-emails && pnpm copy-emails",
-    "start": "node ./dist/index.js",
+    "start": "node ./dist/backend/src/index.js",
     "pgenerate": "prisma generate",
     "ppull": "prisma db pull",
     "ppush": "prisma db push",
@@ -17,7 +17,7 @@
     "types": "tsc --noEmit --project ./tsconfig.json",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --fix",
     "prettify": "prettier --log-level warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}'",
-    "prepare": "pnpm pgenerate"
+    "prepare": "pnpm pgenerate && ts-patch install -s"
   },
   "prisma": {
     "schema": "./src/prisma/schema.prisma"
