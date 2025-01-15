@@ -1,3 +1,4 @@
+import { useStore } from '@nanostores/react'
 import { type UseTRPCQueryResult, type UseTRPCQuerySuccessResult } from '@trpc/react-query/shared'
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
@@ -5,9 +6,9 @@ import { useNavigate } from 'react-router-dom'
 
 import { ErrorPageComponent } from '../components/ErrorPageComponent'
 import { Loader } from '../components/Loader'
+import { lastVisistedNotAuthRouteStore } from '../components/NotAuthRouteTracker'
 import { NotFoundPage } from '../pages/other/NotFoundPage'
 import { type AppContext, useAppContext } from './ctx'
-import { getAllIdeasRoute } from './routes'
 
 class CheckExistsError extends Error {}
 const checkExistsFn = <T,>(value: T, message?: string): NonNullable<T> => {
@@ -68,7 +69,7 @@ type PageWrapperProps<TProps extends Props, TQueryResult extends QueryResult | u
   Page: React.FC<TProps>
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type, react-refresh/only-export-components
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 const PageWrapper = <TProps extends Props = {}, TQueryResult extends QueryResult | undefined = undefined>({
   authorizedOnly,
   authorizedOnlyTitle = 'Please, Authorize',
@@ -87,6 +88,7 @@ const PageWrapper = <TProps extends Props = {}, TQueryResult extends QueryResult
   Page,
   showLoaderOnFetching = true,
 }: PageWrapperProps<TProps, TQueryResult>) => {
+  const lastVisistedNotAuthRoute = useStore(lastVisistedNotAuthRouteStore)
   const navigate = useNavigate()
   const ctx = useAppContext()
   const queryResult = useQuery?.()
@@ -95,9 +97,9 @@ const PageWrapper = <TProps extends Props = {}, TQueryResult extends QueryResult
 
   useEffect(() => {
     if (redirectNeeded) {
-      navigate(getAllIdeasRoute(), { replace: true })
+      navigate(lastVisistedNotAuthRoute, { replace: true })
     }
-  }, [redirectNeeded, navigate])
+  }, [redirectNeeded, navigate, lastVisistedNotAuthRoute])
 
   if (queryResult?.isLoading || (showLoaderOnFetching && queryResult?.isFetching) || redirectNeeded) {
     return <Loader type="page" />

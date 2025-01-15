@@ -6,7 +6,7 @@ import Cookies from 'js-cookie'
 
 import { env } from './env'
 
-// eslint-disable-next-line react-refresh/only-export-components
+ 
 export const trpc = createTRPCReact<TrpcRouter>()
 
 const queryClient = new QueryClient({
