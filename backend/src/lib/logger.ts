@@ -1,3 +1,4 @@
+import { omit } from '@ideanick/shared/src/omit'
 import debug from 'debug'
 import _ from 'lodash'
 import { EOL } from 'os'
@@ -33,7 +34,7 @@ export const winstonLogger = winston.createLogger({
               }[logData.level as 'info' | 'error' | 'debug']
               const levelAndType = `${logData.level} ${logData.logType}`
               const levelTime = `${logData.timestamp}`
-              const visibleMessageTags = _.omit(logData, [
+              const visibleMessageTags = omit(logData, [
                 'level',
                 'logType',
                 'timestamp',

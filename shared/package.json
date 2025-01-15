@@ -8,6 +8,10 @@
     "prettify": "prettier --log-level warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}'"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.14",
     "@types/node": "^22.10.5"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
