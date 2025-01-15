@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react'
 import legacy from '@vitejs/plugin-legacy'
 import autoprefixer from 'autoprefixer'
+import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig, loadEnv } from 'vite'
 import svgr from 'vite-plugin-svgr'
 
@@ -23,7 +24,15 @@ export default defineConfig(({ mode }) => {
       legacy({
         targets: ['> 0.01%'],
       }),
+      visualizer({
+        filename: './dist/bundle-stats.html',
+        gzipSize: true,
+        brotliSize: true,
+      }),
     ],
+    build: {
+      chunkSizeWarningLimit: 900,
+    },
     server: {
       port: +env.PORT,
     },
