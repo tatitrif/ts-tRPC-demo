@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@ideanick/backend": "workspace:*",
+    "@ideanick/shared": "workspace:*",
     "@tanstack/react-query": "^4.36.1",
     "@trpc/client": "^10.45.2",
     "@trpc/react-query": "^10.45.2",
@@ -31,8 +32,7 @@
     "react-infinite-scroller": "^1.2.6",
     "reset-css": "^5.0.2",
     "sass": "^1.83.1",
-    "usehooks-ts": "^2.16.0",
-    "zod": "^3.24.1"
+    "usehooks-ts": "^2.16.0"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",

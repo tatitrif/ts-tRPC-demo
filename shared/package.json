@@ -1,0 +1,13 @@
+{
+  "name": "@ideanick/shared",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "types": "tsc --noEmit --project ./tsconfig.json",
+    "lint": "eslint .",
+    "prettify": "prettier --log-level warn --cache --write '{src/**/*,*}.{ts,tsx,js,json,yml,scss}'"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5"
+  }
+}
