@@ -38,9 +38,12 @@
     "nodemailer": "^6.9.16",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
+    "picocolors": "^1.1.1",
     "serialize-error": "8.1.0",
+    "triple-beam": "^1.4.1",
     "trpc-playground": "^1.0.4",
-    "winston": "^3.17.0"
+    "winston": "^3.17.0",
+    "yaml": "^2.7.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
@@ -52,6 +55,7 @@
     "@types/nodemailer": "^6.4.17",
     "@types/passport": "^1.0.17",
     "@types/passport-jwt": "^4.0.1",
+    "@types/triple-beam": "^1.3.5",
     "eslint-plugin-node": "^11.1.0",
     "nodemon": "^3.1.9",
     "prisma": "^6.2.1",
