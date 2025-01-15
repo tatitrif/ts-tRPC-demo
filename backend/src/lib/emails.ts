@@ -29,7 +29,7 @@ const sendEmail = async ({
   to: string
   subject: string
   templateName: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   templateVariables?: Record<string, any>
 }) => {
   try {
@@ -44,7 +44,7 @@ const sendEmail = async ({
 
     await sendMsg(to, subject, html)
 
-    logger.info('sendEmail', {
+    logger.info('email', 'sendEmail', {
       to,
       subject,
       templateName,
@@ -52,7 +52,7 @@ const sendEmail = async ({
     })
     return { ok: true }
   } catch (error) {
-    logger.error(error)
+    logger.error('email', error)
     return { ok: false }
   }
 }
