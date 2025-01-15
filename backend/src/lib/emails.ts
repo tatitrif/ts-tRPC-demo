@@ -5,6 +5,7 @@ import Handlebars from 'handlebars'
 import { join } from 'path'
 
 import { env } from './env'
+import { logger } from './logger'
 import { sendMsg } from './mailer'
 
 const filePath = '../emails/dist/'
@@ -43,7 +44,7 @@ const sendEmail = async ({
 
     await sendMsg(to, subject, html)
 
-    console.info('sendEmail', {
+    logger.info('sendEmail', {
       to,
       subject,
       templateName,
@@ -51,7 +52,7 @@ const sendEmail = async ({
     })
     return { ok: true }
   } catch (error) {
-    console.error(error)
+    logger.error(error)
     return { ok: false }
   }
 }

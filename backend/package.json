@@ -23,8 +23,8 @@
     "schema": "./src/prisma/schema.prisma"
   },
   "dependencies": {
-    "@ideanick/webapp": "workspace:*",
     "@ideanick/shared": "workspace:*",
+    "@ideanick/webapp": "workspace:*",
     "@prisma/client": "^6.2.1",
     "@trpc/server": "^10.45.2",
     "cors": "^2.8.5",
@@ -38,7 +38,8 @@
     "nodemailer": "^6.9.16",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
-    "trpc-playground": "^1.0.4"
+    "trpc-playground": "^1.0.4",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

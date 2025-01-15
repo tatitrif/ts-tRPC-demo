@@ -6,7 +6,6 @@ import Cookies from 'js-cookie'
 
 import { env } from './env'
 
- 
 export const trpc = createTRPCReact<TrpcRouter>()
 
 const queryClient = new QueryClient({
