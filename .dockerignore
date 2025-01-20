@@ -7,3 +7,5 @@
 .github
 .git
 docker-compose.yml
+react app create.sh
+README.md
