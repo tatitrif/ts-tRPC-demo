@@ -3,12 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "nodemon --watch ./src/emails/dist,./.env ./src/index.ts",
-    "build-emails": "mjml ./src/emails/[!_]*.mjml -o ./src/emails/dist",
-    "copy-emails": "copyfiles ./src/emails/dist/*.html ./dist/backend",
+    "dev": "cross-env NODE_ENV=development nodemon --watch ./src/emails/dist,./.env ./src/index.ts",
+    "build-emails": "mjml ./src/emails/[!_]*.mjml -o ./src/emails/html",
+    "copy-emails": "copyfiles ./src/emails/html/*.html ./dist/backend",
     "build-ts": "rimraf ./dist && tsc --build ./tsconfig.json",
     "build": "pnpm build-ts && pnpm build-emails && pnpm copy-emails",
-    "start": "node ./dist/backend/src/index.js",
+    "start": "cross-env NODE_ENV=development node ./dist/backend/src/index.js",
     "pgenerate": "prisma generate",
     "ppull": "prisma db pull",
     "ppush": "prisma db push",
@@ -40,6 +40,7 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "picocolors": "^1.1.1",
+    "prisma": "^6.2.1",
     "serialize-error": "8.1.0",
     "triple-beam": "^1.4.1",
     "trpc-playground": "^1.0.4",
@@ -60,7 +61,6 @@
     "@types/triple-beam": "^1.3.5",
     "eslint-plugin-node": "^11.1.0",
     "nodemon": "^3.1.9",
-    "prisma": "^6.2.1",
     "rimraf": "^6.0.1"
   }
 }

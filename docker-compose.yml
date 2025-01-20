@@ -1,0 +1,14 @@
+services:
+  app:
+    # platform: linux/amd64 # uncomment to build for amd64 which used in heroku
+    build:
+      context: .
+    image: ideanick-image
+    container_name: ideanick-container
+    # env_file and ports used in runtime of container, not in image build
+    env_file:
+      - ./webapp/.env
+      - ./backend/.env
+      - ./.env.docker
+    ports:
+      - '3000:3000'

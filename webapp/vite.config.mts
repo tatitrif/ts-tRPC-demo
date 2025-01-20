@@ -4,19 +4,11 @@ import autoprefixer from 'autoprefixer'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { defineConfig, loadEnv } from 'vite'
 import svgr from 'vite-plugin-svgr'
+import { parsePublicEnv } from './src/lib/parsePublicEnv'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
-  const publicEnv = Object.entries(env).reduce((acc, [key, value]) => {
-    if (key.startsWith('VITE_') || key === 'NODE_ENV') {
-      return {
-        ...acc,
-        [key]: value,
-      }
-    }
-    return acc
-  }, {})
-
+  const publicEnv = parsePublicEnv(env)
   return {
     plugins: [
       react(),
@@ -30,6 +22,11 @@ export default defineConfig(({ mode }) => {
         brotliSize: true,
       }),
     ],
+    css: {
+      postcss: {
+        plugins: [autoprefixer({})],
+      },
+    },
     build: {
       chunkSizeWarningLimit: 900,
     },
@@ -41,11 +38,6 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       'process.env': publicEnv,
-    },
-    css: {
-      postcss: {
-        plugins: [autoprefixer({})],
-      },
     },
   }
 })
